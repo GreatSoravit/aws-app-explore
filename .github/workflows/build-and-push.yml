@@ -24,7 +24,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+          
+        # --- Build ---
+        
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
@@ -52,7 +54,7 @@ jobs:
           build-args: |
             JAR_FILE=${{ env.JAR_FILE }}
 
-      # --- triggers Argo CD ---
+        # --- triggers Argo CD ---
 
       - name: Checkout GitOps Repo
         uses: actions/checkout@v4
