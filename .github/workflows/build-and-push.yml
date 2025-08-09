@@ -30,7 +30,10 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-
+      
+      - name: Make mvnw executable
+        run: chmod +x mvnw
+  
       - name: Build JAR with Maven
         run: ./mvnw -Dmaven.test.skip=true clean package
         
