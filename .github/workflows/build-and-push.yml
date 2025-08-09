@@ -50,11 +50,10 @@ jobs:
       - name: Update Kubernetes manifest
         run: |
           # Use sed to find and replace the image tag in the deployment file
-          sed -i 's|image: .*|image: ${{ secrets.DOCKERHUB_USERNAME }}/aws-argocd-explore:2.0-${{ github.sha }}|g' gitops/deployment.yaml
+          sed -i 's|image: .*|image: ${{ secrets.DOCKERHUB_USERNAME }}/aws-argocd-explore:2.0-${{ github.sha }}|g' deployment.yaml
 
       - name: Commit and push changes
         run: |
-          cd gitops
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions-bot@github.com"
           git add deployment.yaml
