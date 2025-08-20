@@ -69,8 +69,11 @@ jobs:
 
       - name: Update Kubernetes manifest
         run: |
+          NEW_IMAGE="${{ secrets.DOCKERHUB_USERNAME }}/aws-argocd-explore:2.0-${{ github.sha }}"
+          MANIFEST_FILE="webapp/deployment.yaml"
+          
           # Use sed to find and replace the image tag in the deployment file
-          sed -i 's|image: .*|image: ${{ secrets.DOCKERHUB_USERNAME }}/aws-argocd-explore:2.0-${{ github.sha }}|g' deployment.yaml
+          sed -i 's|image: .*|$NEW_IMAGE|g' $MANIFEST_FILE
 
       - name: Commit and push changes
         run: |
